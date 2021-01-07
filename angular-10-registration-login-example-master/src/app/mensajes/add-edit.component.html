@@ -1,0 +1,29 @@
+﻿<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row" style="background-color: crimson;">
+        <div class="form-group col">
+            <label for="comenario" style="color: white;">ENVIAR MENSAJE</label>
+            <input type="text" formControlName="comentario" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comentario.errors }"/>
+            <div *ngIf="submitted && f.comentario.errors" class="invalid-feedback">
+                <div *ngIf="f.comentario.errors.required">First Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            enviar
+        </button>
+        <a routerLink="/mensajes" class="btn btn-sm btn-primary mr-1">cancelar</a>
+    </div>
+   
+</form>
+<div class="col-sm-6" style="align-items: center;" *ngFor="let publi of users">
+    <div class="row">
+        <div class="card text-white bg-success mb-3" style="width: 1000px;">
+            <div class="card-header" style="text-shadow: black;">MENSAJE NO.{{publi.idmensaje}}</div>
+            <div class="card-body">
+                <p class="card-text">{{publi.contenido}}</p>
+            </div>
+        </div>
+    </div>
+</div>

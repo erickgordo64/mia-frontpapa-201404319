@@ -1,0 +1,12 @@
+﻿<h1>Chats</h1>
+<div class="col-sm-6" style="align-items: center;" *ngFor="let user of users">
+    <div class="row">
+        <div class="card text-white mb-3" style="width: 1000px;">
+            <div class="card-header" style="background-color: crimson;text-shadow: black;">CHAT {{user.nombre}}</div>
+            <div class="card-body" style="background-color:  rgb(14, 145, 62);">
+                <p class="card-text">chat con {{user.nickname}}</p>
+                <a routerLink="edit/{{user.idchat}}" class="btn btn-sm btn-primary mr-1">ver mensajes</a>
+            </div>
+        </div>
+    </div>
+</div>

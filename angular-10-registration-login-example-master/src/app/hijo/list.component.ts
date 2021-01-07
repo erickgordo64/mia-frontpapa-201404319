@@ -61,7 +61,8 @@ export class ListComponent implements OnInit {
     }
 
     confirmarchat(idhijo: string, nickname: string){
-        this.idsanta=this.chat[0].idchat;
+        this.idchat=this.chat[0].idchat;
+        console.log(this.chat[0].idchat);
         this.accountService.addDetalleChat(this.idchat,this.contenido,this.idadmin,idhijo)
         .pipe(first())
         .subscribe({

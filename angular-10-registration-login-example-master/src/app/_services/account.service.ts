@@ -81,6 +81,14 @@ export class AccountService {
         return this.http.get<User>(`${environment.apiUrl}/getSon/?id=${id}`);
     }
 
+    getChatById(id: string){
+        return this.http.get<User[]>(`${environment.apiUrl}/getChatById/?id=${id}`);
+    }
+
+    getMensajeById(id: string){
+        return this.http.get<User[]>(`${environment.apiUrl}/getMensaje/?id=${id}`);
+    }
+
     getAccionByID(id:string){
         return this.http.get<User[]>(`${environment.apiUrl}/getAccionById/?id=${id}`);
     }
