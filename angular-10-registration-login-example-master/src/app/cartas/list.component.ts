@@ -9,7 +9,8 @@ export class ListComponent implements OnInit {
     user=null;
     loading = false;
     estado="true";
-
+    estaror="false";
+    idsanta=1;
     constructor(private accountService: AccountService, private alertService: AlertService) {
         this.user = this.accountService.userValue;
     }
@@ -20,8 +21,8 @@ export class ListComponent implements OnInit {
             .subscribe(users => this.users = users);
     }
 
-    confirmar(id: string){
-        this.accountService.updateEstadoCarta(id,this.estado)
+    confirmar(idcarta: string, idhijo: string){
+        this.accountService.updateEstadoCarta(idcarta,this.estado)
         .pipe(first())
         .subscribe({
             next: () => {
@@ -33,6 +34,19 @@ export class ListComponent implements OnInit {
                 this.loading = false;
             }
         });
+
+        this.accountService.addReparto(idhijo, this.idsanta, idcarta, this.estaror)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+            },
+            error: error => {
+                this.alertService.error(error);
+                this.loading = false;
+            }
+        });
+
     }
 
     deleteUser(id: string) {

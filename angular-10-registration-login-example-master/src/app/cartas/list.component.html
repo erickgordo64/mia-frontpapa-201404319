@@ -19,7 +19,7 @@
             <td>{{user.estado_carta}}</td>
             <td style="white-space: nowrap">
                 <a routerLink="edit/{{user.idcarta}}" class="btn btn-sm btn-primary mr-1">Editar</a>
-                <button (click)="confirmar(user.idcarta)" class="btn btn-sm btn-danger btn-delete-user" *ngIf="user.estado_carta!='true'">
+                <button (click)="confirmar(user.idcarta, user.idhijo)" class="btn btn-sm btn-danger btn-delete-user" *ngIf="user.estado_carta!='true'">
                     confirmar
                 </button>
             </td>

@@ -45,6 +45,10 @@ export class AccountService {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
 
+    addReparto(idhijo, idsanta, idcarta, estado) {
+        return this.http.post(`${environment.apiUrl}/addReparto`, {idhijo,idsanta,idcarta,estado});
+    }
+
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
@@ -98,13 +102,6 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`)
-            .pipe(map(x => {
-                // auto logout if the logged in user deleted their own record
-                if (id == this.userValue.id) {
-                    this.logout();
-                }
-                return x;
-            }));
+        return this.http.delete(`${environment.apiUrl}/deleteProductoDetalleCarta/?id=${id}`);
     }
 }

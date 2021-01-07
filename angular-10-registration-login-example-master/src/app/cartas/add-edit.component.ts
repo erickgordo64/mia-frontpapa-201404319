@@ -48,70 +48,13 @@ export class AddEditComponent implements OnInit {
         }
 
         this.loading = true;
-        if (this.isAddMode) {
-            this.createUser();
-        } else {
-            this.updateUser();
-        }
     }
 
-    quitarproducto(iddetalle: string, recompensa: number, bastones: number){
-        this.accountService.updateDetalleAccion(iddetalle,this.estado)
-        .pipe(first())
-        .subscribe({
-            next: () => {
-                this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                window.location.reload();
-            },
-            error: error => {
-                this.alertService.error(error);
-                this.loading = false;
-            }
-        });
-
-        this.aumneto=recompensa+bastones;
-
-        this.accountService.updateBastonesHijo(this.id, this.aumneto)
-        .pipe(first())
-        .subscribe({
-            next: () => {
-                this.alertService.success('Update successful', { keepAfterRouteChange: true });
-            },
-            error: error => {
-                this.alertService.error(error);
-                this.loading = false;
-            }
-        });
-        
-    }
-
-    private createUser() {
-        this.accountService.register(this.form.value)
+    deleteProducto(iddet: string) {
+        console.log(iddet);
+        this.accountService.delete(iddet)
             .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('User added successfully', { keepAfterRouteChange: true });
-                    this.router.navigate(['../'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
-    }
-
-    private updateUser() {
-        this.accountService.update(this.id, this.form.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                    this.router.navigate(['../../'], { relativeTo: this.route });
-                },
-                error: error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-            });
+            .subscribe(() => this.users = this.users.filter(x => x.id !== iddet));
+            window.location.reload();
     }
 }
