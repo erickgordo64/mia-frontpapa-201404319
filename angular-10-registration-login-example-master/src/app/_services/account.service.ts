@@ -24,8 +24,8 @@ export class AccountService {
         return this.userSubject.value;
     }
 
-    login(username, password) {
-        return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
+    login(correo, contrasena) {
+        return this.http.post<User>(`${environment.apiUrl}/loginPapa`, { correo, contrasena })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
@@ -51,6 +51,22 @@ export class AccountService {
 
     getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    }
+
+    getHijoByID(id:string){
+        return this.http.get<User[]>(`${environment.apiUrl}/getHijoById/?id=${id}`);
+    }
+
+    getAccionByID(id:string){
+        return this.http.get<User[]>(`${environment.apiUrl}/getAccionById/?id=${id}`);
+    }
+
+    updateDetalleAccion(id, estado){
+        return this.http.put(`${environment.apiUrl}/updateDetalleAccion`,{id, estado});
+    }
+
+    updateBastonesHijo(id, bastones){
+        return this.http.put(`${environment.apiUrl}/updateBastonesHijo`,{id, bastones});
     }
 
     update(id, params) {

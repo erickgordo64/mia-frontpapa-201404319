@@ -12,6 +12,9 @@ export class AddEditComponent implements OnInit {
     isAddMode: boolean;
     loading = false;
     submitted = false;
+    users=null;
+    estado ="true";
+    aumneto =0;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -25,24 +28,9 @@ export class AddEditComponent implements OnInit {
         this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
         
-        // password not required in edit mode
-        const passwordValidators = [Validators.minLength(6)];
-        if (this.isAddMode) {
-            passwordValidators.push(Validators.required);
-        }
-
-        this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', passwordValidators]
-        });
-
-        if (!this.isAddMode) {
-            this.accountService.getById(this.id)
-                .pipe(first())
-                .subscribe(x => this.form.patchValue(x));
-        }
+        this.accountService.getAccionByID(this.id)
+        .pipe(first())
+        .subscribe(users => this.users = users);
     }
 
     // convenience getter for easy access to form fields
@@ -65,6 +53,36 @@ export class AddEditComponent implements OnInit {
         } else {
             this.updateUser();
         }
+    }
+
+    addAccion(iddetalle: string, recompensa: number, bastones: number){
+        this.accountService.updateDetalleAccion(iddetalle,this.estado)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.alertService.success('Update successful', { keepAfterRouteChange: true });
+                window.location.reload();
+            },
+            error: error => {
+                this.alertService.error(error);
+                this.loading = false;
+            }
+        });
+
+        this.aumneto=recompensa+bastones;
+
+        this.accountService.updateBastonesHijo(this.id, this.aumneto)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.alertService.success('Update successful', { keepAfterRouteChange: true });
+            },
+            error: error => {
+                this.alertService.error(error);
+                this.loading = false;
+            }
+        });
+        
     }
 
     private createUser() {
