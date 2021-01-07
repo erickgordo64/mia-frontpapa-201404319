@@ -1,0 +1,37 @@
+﻿﻿<h1>PERFIL HIJOS</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Hijo</a>
+<table class="table table-responsive" style="background-color: darkblue; color: white;">
+    <thead>
+        <tr>
+            <th style="width: 30%; color: white;">id hijo</th>
+            <th style="width: 30%; color: white;">nickname</th>
+            <th style="width: 30%; color: white;">nombre</th>
+            <th style="width: 30%; color: white;">edad</th>
+            <th style="width: 30%; color: white;">bastones</th>
+            <th style="width: 10%; color: white;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.idhijo}}</td>
+            <td>{{user.nickname}}</td>
+            <td>{{user.nombre}}</td>
+            <td>{{user.edad}}</td>
+            <td>{{user.bastones}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{user.idhijo}}" class="btn btn-sm btn-primary mr-1">Editar</a>
+                <button (click)="obtenerchat(user.idhijo, user.nickname)" class="btn btn-sm btn-danger btn-delete-user">
+                    obtener chat
+                </button>
+                <button (click)="confirmarchat(user.idhijo, user.nickname)" class="btn btn-sm btn-success">
+                    confirmar chat
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

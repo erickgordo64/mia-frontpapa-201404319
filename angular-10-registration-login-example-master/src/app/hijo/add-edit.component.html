@@ -1,0 +1,148 @@
+﻿﻿<h1 *ngIf="isAddMode">Add Hijo-SU ID DE PADRE ES {{user[0].idpadre}}</h1>
+<h1 *ngIf="!isAddMode">Edit Hijo</h1>
+<button (click)="verdatos()" class="btn btn-sm btn-danger btn-delete-user"  *ngIf="!isAddMode">ver datos</button>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" style="background-color: yellowgreen;">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="nickname">nickname</label>
+            <input type="text" formControlName="nickname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nickname.errors }" />
+            <div *ngIf="submitted && f.nickname.errors" class="invalid-feedback">
+                <div *ngIf="f.nickname.errors.required">nickname is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="password">
+                Password
+                <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+            </label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="nombre">nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                <div *ngIf="f.nombre.errors.required">Last Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="sexo">sexo</label>
+            <select class="custom-select" formControlName="sexo" [ngClass]="{ 'is-invalid': submitted && f.sexo.errors }">
+                <option value="" disabled>elige genero</option>
+                <option value="femenino">femenino</option>
+                <option value="masculino">masculino</option>
+             </select>
+            <div *ngIf="submitted && f.sexo.errors" class="invalid-feedback">
+                <div *ngIf="f.sexo.errors.required">categoria is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="fecha">fecha nacimiento</label>
+            <input type="date" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }" />
+            <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+                <div *ngIf="f.fecha.errors.required">nickname is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="edad">edad</label>
+            <input type="text" formControlName="edad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.edad.errors }" />
+            <div *ngIf="submitted && f.edad.errors" class="invalid-feedback">
+                <div *ngIf="f.edad.errors.required">Last Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="bastones">bastones</label>
+            <input type="text" formControlName="bastones" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bastones.errors }" />
+            <div *ngIf="submitted && f.bastones.errors" class="invalid-feedback">
+                <div *ngIf="f.bastones.errors.required">nickname is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="departamento">departamento</label>
+            <select class="custom-select" formControlName="departamento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.departamento.errors }">
+                <option value="" disabled>Choose your city</option>
+                <option value="guatemala">guatemala</option>
+                <option value="alta verapaz">alta verapaz</option>
+                <option value="baja verapaz">baja verapaz</option>
+                <option value="chimaltenando">chimaltenando</option>
+                <option value="chiquimula">chiquimula</option>
+                <option value="peten">peten</option>
+                <option value="el progreso">el progreso</option>
+                <option value="quiche">quiche</option>
+                <option value="escuintla">escuintla</option>
+                <option value="huhuetenando">huhuetenando</option>
+                <option value="izabal">izabal</option>
+                <option value="jalapa">jalapa</option>
+                <option value="jutiapa">jutiapa</option>
+                <option value="quetzaltenando">quetzaltenando</option>
+                <option value="retalhuleu">retalhuleu</option>
+                <option value="sacatepequez">sacatepequez</option>
+                <option value="san marcos">san marcos</option>
+                <option value="santa rosa">santa rosa</option>
+                <option value="solola">solola</option>
+                <option value="suchitepequez">suchitepequez</option>
+                <option value="totonicapan">totonicapan</option>
+                <option value="zacapa">zacapa</option>
+             </select>
+             <div *ngIf="submitted && f.departamento.errors" class="invalid-feedback">
+                <div *ngIf="f.departamento.errors.required">categoria is required</div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="municipio">municipio</label>
+            <input type="text" formControlName="municipio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.municipio.errors }" />
+            <div *ngIf="submitted && f.municipio.errors" class="invalid-feedback">
+                <div *ngIf="f.municipio.errors.required">nickname is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="direccion">direccion</label>
+            <input type="text" formControlName="direccion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }" />
+            <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
+                <div *ngIf="f.direccion.errors.required">nickname is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="longitud">longitud</label>
+            <input type="text" formControlName="longitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.longitud.errors }" />
+            <div *ngIf="submitted && f.longitud.errors" class="invalid-feedback">
+                <div *ngIf="f.longitud.errors.required">nickname is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="latitud">latitud</label>
+            <input type="text" formControlName="latitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.latitud.errors }" />
+            <div *ngIf="submitted && f.latitud.errors" class="invalid-feedback">
+                <div *ngIf="f.latitud.errors.required">nickname is required</div>
+            </div>
+        </div>
+        <div class="form-group col"  *ngIf="isAddMode">
+            <label for="idpadre">idpadre</label>
+            <input type="text" formControlName="idpadre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.idpadre.errors }" />
+            <div *ngIf="submitted && f.idpadre.errors" class="invalid-feedback">
+                <div *ngIf="f.idpadre.errors.required">nickname is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/hijos" class="btn btn-link">Cancel</a>
+    </div>
+</form>

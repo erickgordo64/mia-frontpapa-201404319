@@ -49,8 +49,24 @@ export class AccountService {
         return this.http.post(`${environment.apiUrl}/addReparto`, {idhijo,idsanta,idcarta,estado});
     }
 
+    addHijo(user: User){
+        return this.http.post(`${environment.apiUrl}/addHijo`, user);
+    }
+
+    addChat(nombre: string){
+        return this.http.post(`${environment.apiUrl}/addChat`,{nombre});
+    }
+
+    addDetalleChat(idchat, contenido, idadmin, idhijo){
+        return this.http.post(`${environment.apiUrl}/addDetalleChat`,{idchat, contenido, idadmin, idhijo});
+    }
+
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    }
+
+    getChat(nickname: string) {
+        return this.http.get<User[]>(`${environment.apiUrl}/getChats/?nickname=${nickname}`);
     }
 
     getById(id: string) {
@@ -59,6 +75,10 @@ export class AccountService {
 
     getHijoByID(id:string){
         return this.http.get<User[]>(`${environment.apiUrl}/getHijoById/?id=${id}`);
+    }
+
+    getHijoById(id: string){
+        return this.http.get<User>(`${environment.apiUrl}/getSon/?id=${id}`);
     }
 
     getAccionByID(id:string){
@@ -83,6 +103,10 @@ export class AccountService {
 
     updateEstadoCarta(id, estado){
         return this.http.put(`${environment.apiUrl}/updateEstadoCarta`,{id, estado});
+    }
+
+    updateHijo(id, params) {
+        return this.http.put(`${environment.apiUrl}/updateHijo/?id=${id}`, params);
     }
 
     update(id, params) {
