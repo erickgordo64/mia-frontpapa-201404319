@@ -1,0 +1,33 @@
+﻿﻿<h1>CARTAS HIJOS</h1>
+<table class="table table-responsive" style="background-color: darkblue; color: white;">
+    <thead>
+        <tr>
+            <th style="width: 30%; color: white;">id carta</th>
+            <th style="width: 30%; color: white;">fecha carta</th>
+            <th style="width: 30%; color: white;">nickname hijo</th>
+            <th style="width: 30%; color: white;">nombre hijo</th>
+            <th style="width: 30%; color: white;">estado carta</th>
+            <th style="width: 10%; color: white;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.idcarta}}</td>
+            <td>{{user.fecha_carta}}</td>
+            <td>{{user.nickname}}</td>
+            <td>{{user.nombre}}</td>
+            <td>{{user.estado_carta}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{user.idcarta}}" class="btn btn-sm btn-primary mr-1">Editar</a>
+                <button (click)="confirmar(user.idcarta)" class="btn btn-sm btn-danger btn-delete-user" *ngIf="user.estado_carta!='true'">
+                    confirmar
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

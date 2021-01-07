@@ -1,0 +1,27 @@
+﻿<h1>Elementos Carta</h1>
+<a routerLink="/cartas" class="btn btn-sm btn-danger mb-2">Regresar</a>
+﻿<h1 style="background-color: darkcyan; color: white;">elementos carta NO.{{users[0].idcarta}}</h1>
+<table class="table table-responsive" style="background-color: darkcyan; color: white;">
+    <thead>
+        <tr>
+            <th style="width: 30%">Nombre producto</th>
+            <th style="width: 30%">precio</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let accion of users">
+            <td>{{accion.nombre_producto}}</td>
+            <td>{{accion.precio}}</td>
+            <td style="white-space: nowrap">
+                <button (click)="quitarproducto(accion.iddetallecarta)" class="btn btn-sm btn-danger btn-delete-user mr-1">eliminar
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

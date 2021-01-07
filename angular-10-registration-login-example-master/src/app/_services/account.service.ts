@@ -61,12 +61,24 @@ export class AccountService {
         return this.http.get<User[]>(`${environment.apiUrl}/getAccionById/?id=${id}`);
     }
 
+    geCartasHijosByID(id:string){
+        return this.http.get<User[]>(`${environment.apiUrl}/getCartasHijosById/?id=${id}`);
+    }
+
+    geElementosCartaByID(id:string){
+        return this.http.get<User[]>(`${environment.apiUrl}/getElementosCartaById/?id=${id}`);
+    }
+
     updateDetalleAccion(id, estado){
         return this.http.put(`${environment.apiUrl}/updateDetalleAccion`,{id, estado});
     }
 
     updateBastonesHijo(id, bastones){
         return this.http.put(`${environment.apiUrl}/updateBastonesHijo`,{id, bastones});
+    }
+
+    updateEstadoCarta(id, estado){
+        return this.http.put(`${environment.apiUrl}/updateEstadoCarta`,{id, estado});
     }
 
     update(id, params) {
